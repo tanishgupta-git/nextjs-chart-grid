@@ -14,3 +14,39 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.linkContainer {
+ display: flex;
+ justify-content: flex-end;
+ padding: 20px;
+}
+
+.tabActive,.linkPage{
+  display: inline-block;
+  background-color:#29305B;
+  color:#ffffff;
+  padding:10px 30px;
+  border-radius:6px;
+  border:1px solid transparent;
+  text-align: center;
+  transition: 0.2s;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.tabInactive {
+  display: inline-block;
+  color:#29305B;
+  border:1px solid #29305B;
+  background-color: transparent;
+  padding:10px 30px;
+  border-radius:6px;
+  text-align: center;
+  transition: 0.2s;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.linkPage:hover {
+  color:#29305B;
+  border:1px solid #29305B;
+  background-color: transparent;
+}

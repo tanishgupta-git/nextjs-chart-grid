@@ -1,0 +1,11 @@
+.statsContainer{
+ width: 70%;
+ margin: 0 auto;
+}
+
+
+.statsTabList {
+    display: flex;
+    list-style: none;
+    margin: 20px 0; 
+}

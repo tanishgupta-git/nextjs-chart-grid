@@ -1,10 +1,20 @@
-import type { NextComponentType } from 'next';
+import type { NextPage } from 'next';
 import {AgGridColumn, AgGridReact} from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
-const DataGrid : NextComponentType = () => {
+interface event {
+    date : string,
+    value : string,
+    id : string
+}
+interface props {
+    events : event[]
+}
+
+
+const EventGrid : NextPage<props> = ({events}) => {
     const rowData = [
         {make: "Toyota", model: "Celica", price: 35000},
         {make: "Ford", model: "Mondeo", price: 32000},
@@ -23,4 +33,4 @@ const DataGrid : NextComponentType = () => {
    )
 }
 
-export default DataGrid;
+export default EventGrid;
