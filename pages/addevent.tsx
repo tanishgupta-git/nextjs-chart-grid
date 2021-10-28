@@ -6,8 +6,7 @@ const AddEvent : NextPage = () => {
     
     const [value,setValue] = useState("");
     const handleSubmit = () => {
-       console.log(value);
-       setValue("");
+  
     }
 
    return (

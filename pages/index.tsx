@@ -2,6 +2,8 @@ import type { NextPage } from 'next';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link'
+import DataChart from '../components/DataChart';
+import DataGrid from '../components/DataGrid';
 
 const Home: NextPage = () => {
   return (
@@ -11,15 +13,15 @@ const Home: NextPage = () => {
         </Link>
         <Tabs>
           <TabList>
-            <Tab>Title 1</Tab>
-            <Tab>Title 2</Tab>
+            <Tab>HighChart</Tab>
+            <Tab>AG Grid</Tab>
           </TabList>
 
           <TabPanel>
-            <h2>Any content 1</h2>
+            <DataChart />
           </TabPanel>
           <TabPanel>
-            <h2>Any content 2</h2>
+             <DataGrid />
           </TabPanel>
         </Tabs>
     </div>
