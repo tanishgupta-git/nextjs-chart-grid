@@ -26,7 +26,7 @@ const AddEvent : NextPage<props> = ({events,setAddEvent,setEvents}) => {
     const [addEventMutation, { data, loading, error }] = useMutation(ADD_EVENT);
 
     const handleSubmit = () => {
-       if (value === "" || Number(value) === NaN) {
+        if (isNaN(Number(value)) === true) {
           alert("Enter a valid value");
           return;
        }
@@ -60,7 +60,7 @@ const AddEvent : NextPage<props> = ({events,setAddEvent,setEvents}) => {
 
          <div className={styles.formContainer} >
                <div className={styles.inputContainer}>
-                    <input type="text" placeholder="Enter a int Value" className={styles.inputvalue} value={value} onChange={ (e) => setValue(e.target.value)} required/>
+                    <input type="text" placeholder="Enter a int Value" className={styles.inputvalue} value={value} onChange={ (e) => setValue(e.target.value)} required={true}/>
                     <input type="button" value="Add" className={styles.inputbutton} onClick={handleSubmit} />
                 </div>
          </div>
