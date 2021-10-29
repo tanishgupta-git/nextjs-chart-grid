@@ -1,35 +1,41 @@
 import type { NextPage } from 'next';
-import {AgGridColumn, AgGridReact} from 'ag-grid-react';
-
+import { AgGridColumn, AgGridReact } from '@ag-grid-community/react';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import eventI from '../types/event';
 
-interface event {
-    date : string,
-    value : string,
-    id : string
-}
+
 interface props {
-    events : event[]
+    events : eventI[]
 }
 
 
 const EventGrid : NextPage<props> = ({events}) => {
-    const rowData = [
-        {make: "Toyota", model: "Celica", price: 35000},
-        {make: "Ford", model: "Mondeo", price: 32000},
-        {make: "Porsche", model: "Boxter", price: 72000}
-    ];
-
+   const rowdata:eventI[] = events.map( event => ({
+       id : event.id,
+       datetime:event.datetime,
+       value : event.value
+   }))
+   const rowStyle = { background: '#ffffff' };
    return (
-    <div className="ag-theme-alpine" style={{height: 400, width: 600}}>
+    <div className="ag-theme-alpine">
     <AgGridReact
-        rowData={rowData}>
-        <AgGridColumn field="make"></AgGridColumn>
-        <AgGridColumn field="model"></AgGridColumn>
-        <AgGridColumn field="price"></AgGridColumn>
+        rowData={rowdata}
+        rowStyle={rowStyle}
+        modules={[ClientSideRowModelModule]}
+            defaultColDef={{
+                flex: 1,
+                resizable:true
+              }}
+        domLayout={'autoHeight'}
+        suppressRowHoverHighlight={true}
+        >
+        <AgGridColumn field="datetime"></AgGridColumn>
+        <AgGridColumn field="value" ></AgGridColumn>
+        <AgGridColumn field="id" ></AgGridColumn>
     </AgGridReact>
-</div>
+    </div>
    )
 }
 

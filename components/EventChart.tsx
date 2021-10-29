@@ -1,14 +1,10 @@
 import type { NextPage } from 'next';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import eventI from '../types/event';
 
-interface event {
-    date : string,
-    value : string,
-    id : string
-}
 interface props {
-    events : event[]
+    events : eventI[]
 }
 
 const EventChart : NextPage<props>= ({events}) => {
@@ -19,17 +15,33 @@ const EventChart : NextPage<props>= ({events}) => {
         title: {
           text: 'Event Highchart'
         },
+        yAxis: [{
+          title: {
+              text: 'Value'
+          }
+          }],
+        xAxis : [{
+          title: {
+            text: 'Time'
+          },
+          type: "category",
+          labels: {
+              format: "{value}"
+          }
+           
+        }],
         series: [
-          {
-            data: [[1,3], [2,4], [3,3], [4,4], [3,5], [5,1]]
+          { 
+           color: '#F58E6C',
+           lineWidth: 2,
+           id: 'Events',
+            data: events.map( event => ([event.datetime,event.value]))
           }
         ]
       };     
 
     return (
-        <div>
             <HighchartsReact highcharts={Highcharts} options={options} />
-        </div>
     )
 }
 

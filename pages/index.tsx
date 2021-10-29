@@ -1,41 +1,45 @@
 import type { NextPage } from 'next';
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import styles from '../styles/Home.module.css';
-import Link from 'next/link'
-import EventChart from '../components/EventChart';
-import EventGrid from '../components/EventGrid';
-import { useEffect, useState } from 'react';
+import { useState,useEffect } from 'react';
+import { gql, useQuery } from '@apollo/client';
+import AddEvent from '../components/AddEvent';
+import Stats from '../components/Stats';
+import eventI from '../types/event';
+
+const GET_EVENTS = gql`
+  query GetEvents {
+    events {
+      id
+      value
+      datetime
+    }
+  }
+`;
+
 
 const Home: NextPage = () => {
-  interface event {
-    date : string,
-    value : string,
-    id : string
-}
-  const [events,setEvents] = useState<event[]>([]);
-  const [tabIndex, setTabIndex] = useState(0);
+
+  const [events,setEvents] = useState<eventI[]>([]);
+  const [addEvent,setAddEvent] = useState(false);
+  const { loading, error, data } = useQuery(GET_EVENTS);
+
+  useEffect(() => {
+    if(data) {
+      setEvents(data.events)
+    }
+ },[data])
+
+  if (loading) return <div>Loading</div>;
+  if(error) return <div>error</div>;
 
 
   return (
-    <div className={styles.container}>
-      <div className='linkContainer'>
-        <Link href="/addevent">
-            <a className="linkPage">Add Event</a>
-        </Link>
-      </div>
-        <Tabs className={styles.statsContainer} selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
-          <TabList className={styles.statsTabList}>
-            <Tab className={tabIndex === 0 ? 'tabActive' : 'tabInactive'}>HighChart</Tab>
-            <Tab className={tabIndex === 1 ? 'tabActive' : 'tabInactive'}>AG Grid</Tab>
-          </TabList>
-
-          <TabPanel>
-            <EventChart events={events}/>
-          </TabPanel>
-          <TabPanel>
-             <EventGrid events={events} />
-          </TabPanel>
-        </Tabs>
+    <div>
+        {
+          addEvent ?
+           <AddEvent events={events} setAddEvent={setAddEvent} setEvents={setEvents} />
+           :
+           <Stats events={events} setAddEvent={setAddEvent} />
+        }
     </div>
   )
 }

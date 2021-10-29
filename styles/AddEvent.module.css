@@ -15,19 +15,27 @@
 
 .inputvalue {
     display: block;
-    padding:10px;
-    border: 1px solid #29305B;
-    color: #29305B;
+    padding:20px;
+    border: none;
+    color: #106FFE;
     width: 70%;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    font-family:sans-serif;
+    outline: none;
+    background-color: transparent;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 
 .inputbutton {
-    background-color: #29305B;
+    background-color: #106FFE;
     padding: 10px 50px;
-    margin-top: 20px;
+    margin-top: 40px;
     font-size: 18px;
     border:none;
     border-radius: 6px;
     color: #ffffff;
     cursor: pointer;
+    box-shadow: rgba(16, 111, 254, 0.1) 0px 4px 16px, rgba(16, 111, 254, 0.5) 0px 8px 32px;
 }
