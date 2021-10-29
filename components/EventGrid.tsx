@@ -12,29 +12,26 @@ interface props {
 
 
 const EventGrid : NextPage<props> = ({events}) => {
-   const rowdata:eventI[] = events.map( event => ({
-       id : event.id,
-       datetime:event.datetime,
-       value : event.value
-   }))
+    
    const rowStyle = { background: '#ffffff' };
+   
    return (
     <div className="ag-theme-alpine">
-    <AgGridReact
-        rowData={rowdata}
-        rowStyle={rowStyle}
-        modules={[ClientSideRowModelModule]}
-            defaultColDef={{
-                flex: 1,
-                resizable:true
-              }}
-        domLayout={'autoHeight'}
-        suppressRowHoverHighlight={true}
-        >
-        <AgGridColumn field="datetime"></AgGridColumn>
-        <AgGridColumn field="value" ></AgGridColumn>
-        <AgGridColumn field="id" ></AgGridColumn>
-    </AgGridReact>
+            <AgGridReact
+                rowData={events}
+                rowStyle={rowStyle}
+                modules={[ClientSideRowModelModule]}
+                    defaultColDef={{
+                        flex: 1,
+                        resizable:true
+                    }}
+                domLayout={'autoHeight'}
+                suppressRowHoverHighlight={true}
+                >
+                <AgGridColumn field="datetime"></AgGridColumn>
+                <AgGridColumn field="value" ></AgGridColumn>
+                <AgGridColumn field="id" ></AgGridColumn>
+            </AgGridReact>
     </div>
    )
 }

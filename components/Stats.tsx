@@ -13,27 +13,32 @@ interface props {
 
 
 const Stats: NextPage<props> = ({events,setAddEvent}) => {
+  
   const [tabIndex, setTabIndex] = useState(0);
   
   return (
     <div className={styles.container}>
-      <div className='linkContainer'>
-            <span className='linkHead'>Next Chart Grid</span>
-            <span className="linkPage" onClick={() => setAddEvent(true)}>Add Event</span> 
-      </div>
-        <Tabs className={styles.statsContainer} selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
-          <TabList className={styles.statsTabList}>
-            <Tab className={tabIndex === 0 ? 'tabActive' : 'tabInactive'}>HighChart</Tab>
-            <Tab className={tabIndex === 1 ? 'tabActive' : 'tabInactive'}>AG Grid</Tab>
-          </TabList>
 
-          <TabPanel className={styles.highchartContainer} >
-            <EventChart events={events}/>
-          </TabPanel>
-          <TabPanel>
-             <EventGrid events={events} />
-          </TabPanel>
-        </Tabs>
+          <div className='linkContainer'>
+                <span className='linkHead'>Next Chart Grid</span>
+                <span className="linkPage" onClick={() => setAddEvent(true)}>Add Event</span> 
+          </div>
+
+            <Tabs className={styles.statsContainer} selectedIndex={tabIndex} onSelect={index => setTabIndex(index)}>
+                    <TabList className={styles.statsTabList}>
+                      <Tab className={tabIndex === 0 ? 'tabActive' : 'tabInactive'}>HighChart</Tab>
+                      <Tab className={tabIndex === 1 ? 'tabActive' : 'tabInactive'}>AG Grid</Tab>
+                    </TabList>
+
+                    <TabPanel className={styles.stats} >
+                      <EventChart events={events}/>
+                    </TabPanel>
+                    <TabPanel className={styles.stats}>
+                      <EventGrid events={events} />
+                    </TabPanel>
+            </Tabs>
+
+
     </div>
   )
 }

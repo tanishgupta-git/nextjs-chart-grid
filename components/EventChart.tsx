@@ -8,6 +8,8 @@ interface props {
 }
 
 const EventChart : NextPage<props>= ({events}) => {
+   
+    // options for highchart
     const options = {
         chart: {
           type: 'spline'
@@ -27,7 +29,7 @@ const EventChart : NextPage<props>= ({events}) => {
           type: "category",
           labels: {
               format: "{value}"
-          }
+          },
            
         }],
         series: [
