@@ -7,9 +7,9 @@ run command:
 ```bash
 fakeql-cli sampledata.json
 ```
-sampledata file is given in project directory <br />
+sampledata.json file is given in project directory <br />
 After running the above command you will get a uri, deploy it to fakeql.com <br />
-Replace that uri with apollo client uri in /pages/_app.tsx file <br />
+Replace that uri with apollo client uri in file - /pages/_app.tsx <br />
 
 run command:
 ```bash
